@@ -145,7 +145,7 @@ public class GameCharacter implements IModule {
 	 * Loot
 	 */
 	
-	private void lootItems(Item... items){
+	public void lootItems(Item... items){
 		for (Item i: items){
 			this.inventory.addItem(i);
 			Debug.log(this.getCharacterName()+" got Item: "+i.getItemName());
