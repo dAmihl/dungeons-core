@@ -19,7 +19,7 @@ import at.gousoogames.dungeons.engine.gameitems.weapons.Weapon;
 import at.gousoogames.dungeons.engine.skills.SkillFactory;
 import at.gousoogames.dungeons.engine.world.DungeonManager;
 import at.gousoogames.dungeons.game.game.SingleplayerGameManager;
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 
 

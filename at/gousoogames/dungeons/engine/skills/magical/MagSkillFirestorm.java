@@ -4,7 +4,7 @@ import at.gousoogames.dungeons.engine.character.GameCharacter;
 import at.gousoogames.dungeons.engine.gameitems.StatRequirements;
 import at.gousoogames.dungeons.engine.skills.EffectMethod;
 import at.gousoogames.dungeons.engine.skills.effects.SkillEffect;
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 public class MagSkillFirestorm extends MagicalSkill{
 

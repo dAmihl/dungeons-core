@@ -1,6 +1,6 @@
 package at.gousoogames.dungeons.engine.generator;
 
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 public class RandomNumberGenerator {
 

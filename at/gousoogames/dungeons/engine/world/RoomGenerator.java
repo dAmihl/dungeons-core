@@ -4,7 +4,7 @@ import at.gousoogames.dungeons.engine.generator.ModuleGenerator;
 import at.gousoogames.dungeons.engine.generator.RandomNumberGenerator;
 import at.gousoogames.dungeons.engine.modules.IModule;
 import at.gousoogames.dungeons.game.gamemodes.GamemodeManager;
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 public class RoomGenerator {
 

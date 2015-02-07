@@ -4,7 +4,7 @@ import at.gousoogames.dungeons.engine.character.Player;
 import at.gousoogames.dungeons.engine.world.Dungeon;
 import at.gousoogames.dungeons.engine.world.DungeonManager;
 import at.gousoogames.dungeons.game.battle.BattleTeam;
-import at.gousoogames.dungeons.gui.output.IOutput;
+import at.gousoogames.dungeons.gui.output.controller.IOutput;
 import at.gousoogames.dungeons.tests.application.Application;
 
 public class SingleplayerGameManager extends GameManager {

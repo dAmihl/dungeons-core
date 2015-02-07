@@ -1,4 +1,4 @@
-package at.gousoogames.dungeons.gui.output;
+package at.gousoogames.dungeons.gui.output.controller;
 
 import at.gousoogames.dungeons.engine.character.Player;
 import at.gousoogames.dungeons.engine.character.npc.enemies.Enemy;

@@ -5,7 +5,7 @@ import at.gousoogames.dungeons.engine.gameitems.StatRequirements;
 import at.gousoogames.dungeons.engine.generator.RandomNumberGenerator;
 import at.gousoogames.dungeons.engine.skills.effects.SkillEffect;
 import at.gousoogames.dungeons.game.gamemodes.GamemodeManager;
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 public abstract class Skill {
 

@@ -6,9 +6,9 @@ import at.gousoogames.dungeons.engine.world.DungeonGenerator;
 import at.gousoogames.dungeons.engine.world.DungeonManager;
 import at.gousoogames.dungeons.game.battle.BattleManager;
 import at.gousoogames.dungeons.game.battle.BattleTeam;
-import at.gousoogames.dungeons.gui.output.Debug;
-import at.gousoogames.dungeons.gui.output.IOutput;
-import at.gousoogames.dungeons.gui.output.OutputFactory;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
+import at.gousoogames.dungeons.gui.output.controller.IOutput;
+import at.gousoogames.dungeons.gui.output.controller.OutputFactory;
 import at.gousoogames.dungeons.tests.application.Application;
 
 public abstract class GameManager {

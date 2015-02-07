@@ -8,8 +8,8 @@ import at.gousoogames.dungeons.engine.skills.Skill;
 import at.gousoogames.dungeons.engine.skills.magical.MagicalSkill;
 import at.gousoogames.dungeons.engine.skills.physical.PhysicalSkill;
 import at.gousoogames.dungeons.engine.skills.supportive.SupportiveSkill;
-import at.gousoogames.dungeons.gui.output.Debug;
-import at.gousoogames.dungeons.gui.output.OutputFactory;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
+import at.gousoogames.dungeons.gui.output.controller.OutputFactory;
 
 public class GameCharacter implements IModule {
 

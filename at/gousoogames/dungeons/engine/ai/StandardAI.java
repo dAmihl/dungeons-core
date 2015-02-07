@@ -4,7 +4,7 @@ import at.gousoogames.dungeons.engine.character.GameCharacter;
 import at.gousoogames.dungeons.engine.skills.Skill;
 import at.gousoogames.dungeons.engine.skills.supportive.SupportiveSkill;
 import at.gousoogames.dungeons.game.battle.BattleTeam;
-import at.gousoogames.dungeons.gui.output.Debug;
+import at.gousoogames.dungeons.gui.output.controller.Debug;
 
 public class StandardAI extends AI {
 

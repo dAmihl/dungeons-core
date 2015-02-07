@@ -1,4 +1,4 @@
-package at.gousoogames.dungeons.gui.output;
+package at.gousoogames.dungeons.gui.output.controller;
 
 public class InputManagerFactory {
 
@@ -7,7 +7,7 @@ public class InputManagerFactory {
 	private static IInputManager instance = null;
 	
 	public static IInputManager getInputManager(){
-		if (instance == null) instance = new InputManagerText();
+		if (instance == null) instance = new InputManagerGUI();
 		return instance;
 	}
 	

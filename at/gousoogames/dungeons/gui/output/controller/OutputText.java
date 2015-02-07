@@ -1,10 +1,9 @@
-package at.gousoogames.dungeons.gui.output;
+package at.gousoogames.dungeons.gui.output.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import at.gousoogames.dungeons.GameApplication;
 import at.gousoogames.dungeons.engine.character.GameCharacter;
 import at.gousoogames.dungeons.engine.character.Player;
 import at.gousoogames.dungeons.engine.character.npc.enemies.Enemy;
@@ -23,7 +22,6 @@ public class OutputText implements IOutput {
 	
 	private void printText(String s){
 		System.out.println(s);
-		GameApplication.text += s+"\n";
 	}
 	
 	@Override

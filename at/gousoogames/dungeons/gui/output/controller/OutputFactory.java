@@ -1,4 +1,4 @@
-package at.gousoogames.dungeons.gui.output;
+package at.gousoogames.dungeons.gui.output.controller;
 
 public class OutputFactory {
 
@@ -7,7 +7,7 @@ public class OutputFactory {
 	private static IOutput instance = null;
 	
 	public static IOutput getOutput(){
-		if (instance == null) instance = new OutputText();
+		if (instance == null) instance = new OutputGUI();
 		return instance;
 	}
 	
