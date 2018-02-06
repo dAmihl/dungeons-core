@@ -14,6 +14,9 @@ public class Enemy extends NPC{
 		super(name, i, eq, sk, st, b);
 	}
 
-
+	@Override
+	public String toString() {
+		return this.getCharacterName();
+	}
 
 }

@@ -87,7 +87,7 @@ public class OutputText implements IOutput {
 
 	@Override
 	public void showMainMenu() {
-		printText("1. start test game");
+		printText("1. Start!");
 		InputManagerFactory.getInputManager().handleInputMainMenu(new InputContainer(readIntStdin()));
 		
 	}
@@ -111,7 +111,7 @@ public class OutputText implements IOutput {
 	private void showRoomMenu(IModule... modules){
 		printText("What do you want to do:");
 		for (int i = 0; i < modules.length; i++){
-			printText(i+"."+modules[i]);
+			printText(i+". Inspect Module: "+modules[i]);
 		}
 		printText("10: Start Fight");
 		printText("11: Show character");
@@ -161,17 +161,17 @@ public class OutputText implements IOutput {
 		printText("You are in a Battle!");
 		printText("Team 1: ");
 		for (GameCharacter c : bm.getTeamOne().getMembers())
-			printText(c.getCharacterName() + " with level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
+			printText(c.getCharacterName() + " with Level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
 		
 		printText("Team 2: ");
 		for (GameCharacter c : bm.getTeamTwo().getMembers())
-			printText(c.getCharacterName() + "with level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
+			printText(c.getCharacterName() + " with Level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
 		
 	}
 
 	@Override
 	public void showBattleCharacterTurn(GameCharacter c) {
-		printText(c + "with HP: "+c.getStats().getHealthPoints());
+		printText("[" + c + "] with HP: "+c.getStats().getHealthPoints());
 		if (c instanceof Player){
 			printText("Player is making a turn.");
 			showBattlePlayerTurnMenu((Player) c);
@@ -228,17 +228,17 @@ public class OutputText implements IOutput {
 		int i = 0;
 		printText("Physical Skills: ");
 		for (Skill s: p.getSkillset().getBattleSkillset().getPhysicalSkills()){
-			printText(i++ + ". "+s.getSkillName() + ": "+s.getSkillLevel());
+			printText(i++ + ". {"+s.getSkillName() + "}: "+s.getSkillLevel());
 		}
 		i = 10;
 		printText("Magical Skills: ");
 		for (Skill s: p.getSkillset().getBattleSkillset().getMagicalSkills()){
-			printText(i++ + ". "+s.getSkillName() + ": "+s.getSkillLevel());
+			printText(i++ + ". {"+s.getSkillName() + "}: "+s.getSkillLevel());
 		}
 		i = 20;
 		printText("Supportive Skills: ");
 		for (Skill s: p.getSkillset().getBattleSkillset().getSupportiveSkills()){
-			printText(i++ + ". "+s.getSkillName() + ": "+s.getSkillLevel());
+			printText(i++ + ". {"+s.getSkillName() + "}: "+s.getSkillLevel());
 		}
 		
 		int input = readIntStdin();
@@ -263,7 +263,7 @@ public class OutputText implements IOutput {
 		if (s instanceof SupportiveSkill){
 			
 			for (GameCharacter c: myTeam.getAliveMembers()){
-				printText(i++ + ". "+c+" with life: "+c.getStats().getCurrentHealthPoints());
+				printText(i++ + ". ["+c+"] with life: "+c.getStats().getCurrentHealthPoints());
 			}
 			
 			int input = readIntStdin();
@@ -278,7 +278,7 @@ public class OutputText implements IOutput {
 		
 		}else{
 			for (GameCharacter c: enemies.getAliveMembers()){
-				printText(i++ + ". "+c+" with life: "+c.getStats().getCurrentHealthPoints());
+				printText(i++ + ". ["+c+"] with life: "+c.getStats().getCurrentHealthPoints());
 			}
 			
 			int input = readIntStdin();
