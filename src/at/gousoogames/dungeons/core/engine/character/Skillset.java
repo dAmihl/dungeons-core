@@ -6,7 +6,7 @@ import at.gousoogames.dungeons.core.engine.skills.Skill;
 import at.gousoogames.dungeons.core.engine.skills.magical.MagicalSkill;
 import at.gousoogames.dungeons.core.engine.skills.physical.PhysicalSkill;
 import at.gousoogames.dungeons.core.engine.skills.supportive.SupportiveSkill;
-import at.gousoogames.dungeons.gdx.gui.output.controller.Debug;
+import at.gousoogames.dungeons.core.gui.output.controller.Debug;
 
 public class Skillset {
 

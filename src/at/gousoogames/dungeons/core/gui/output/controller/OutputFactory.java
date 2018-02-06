@@ -1,4 +1,4 @@
-package at.gousoogames.dungeons.gdx.gui.output.controller;
+package at.gousoogames.dungeons.core.gui.output.controller;
 
 public class OutputFactory {
 

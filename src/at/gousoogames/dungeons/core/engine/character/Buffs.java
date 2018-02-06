@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import at.gousoogames.dungeons.core.engine.skills.Effect;
 import at.gousoogames.dungeons.core.engine.skills.effects.SkillEffect;
-import at.gousoogames.dungeons.gdx.gui.output.controller.Debug;
+import at.gousoogames.dungeons.core.gui.output.controller.Debug;
 
 public class Buffs {
 

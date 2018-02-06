@@ -2,9 +2,9 @@ package at.gousoogames.dungeons.core.tests.application;
 
 import at.gousoogames.dungeons.core.engine.character.Player;
 import at.gousoogames.dungeons.core.game.game.SingleplayerGameManager;
+import at.gousoogames.dungeons.core.gui.output.controller.IOutput;
+import at.gousoogames.dungeons.core.gui.output.controller.OutputFactory;
 import at.gousoogames.dungeons.core.tests.TestCases;
-import at.gousoogames.dungeons.gdx.gui.output.controller.IOutput;
-import at.gousoogames.dungeons.gdx.gui.output.controller.OutputFactory;
 
 public class Application {
 

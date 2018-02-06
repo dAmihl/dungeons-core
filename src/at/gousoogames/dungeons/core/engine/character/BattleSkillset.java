@@ -7,7 +7,7 @@ import at.gousoogames.dungeons.core.engine.skills.magical.MagicalSkill;
 import at.gousoogames.dungeons.core.engine.skills.physical.PhysicalSkill;
 import at.gousoogames.dungeons.core.engine.skills.supportive.SupportiveSkill;
 import at.gousoogames.dungeons.core.game.gamemodes.GamemodeManager;
-import at.gousoogames.dungeons.gdx.gui.output.controller.OutputFactory;
+import at.gousoogames.dungeons.core.gui.output.controller.OutputFactory;
 
 public class BattleSkillset {
 

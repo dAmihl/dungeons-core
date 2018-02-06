@@ -5,8 +5,8 @@ import at.gousoogames.dungeons.core.engine.character.GameCharacter;
 import at.gousoogames.dungeons.core.engine.character.Player;
 import at.gousoogames.dungeons.core.engine.character.npc.enemies.Enemy;
 import at.gousoogames.dungeons.core.game.gamemodes.GamemodeManager;
-import at.gousoogames.dungeons.gdx.gui.output.controller.Debug;
-import at.gousoogames.dungeons.gdx.gui.output.controller.OutputFactory;
+import at.gousoogames.dungeons.core.gui.output.controller.Debug;
+import at.gousoogames.dungeons.core.gui.output.controller.OutputFactory;
 
 
 public class BattleManager {

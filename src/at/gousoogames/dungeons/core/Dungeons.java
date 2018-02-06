@@ -2,7 +2,7 @@ package at.gousoogames.dungeons.core;
 
 
 
-import at.gousoogames.dungeons.gdx.gui.output.screens.WelcomeScreen;
+import at.gousoogames.dungeons.core.gui.output.screens.WelcomeScreen;
 
 
 
