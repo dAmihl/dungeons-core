@@ -21,6 +21,9 @@ public class GameCharacter implements IModule {
 	private CharacterStats stats;
 	private Buffs buffs;
 	
+	private boolean isAbleToAction = true;
+	private boolean isDead = false;
+	
 	public GameCharacter(String name, Inventory i, Equipment eq, Skillset sk, CharacterStats st, Buffs b){
 		this.characterName = name;
 		this.characterLevel = 1;
@@ -99,7 +102,8 @@ public class GameCharacter implements IModule {
 	}
 	
 	public void tickBuffs(){
-		this.updateStats(); // TODO: very unefficient. only BUFF stats?
+		if (!this.checkBeforePassiveAction()) return;
+		this.updateStats(); // TODO: very inefficient. only BUFF stats?
 		this.buffs.tick(this);
 	}
 	
@@ -113,23 +117,30 @@ public class GameCharacter implements IModule {
 	
 	
 	public void giveHealth(int i) {
+		if (!this.checkBeforePassiveAction()) return;
 		this.stats.giveHealth(i);
 	}
 	
 	public void giveMana(int i){
+		if (!this.checkBeforePassiveAction()) return;
 		this.stats.giveMana(i);
 	}
 
 
 	public void givePhysicalDamage(IModule source, int i) {
+		if (!this.checkBeforePassiveAction()) return;
 		this.stats.givePhysicalDamage(i);
+		this.checkDeath();
 	}
 	
 	public void giveMagicalDamage(IModule source, int i){
+		if (!this.checkBeforePassiveAction()) return;
 		this.stats.giveMagicalDamage(i);
+		this.checkDeath();
 	}
 	
 	public void giveHeal(int points){
+		if (!this.checkBeforePassiveAction()) return;
 		this.giveHealth(points);
 	}
 	
@@ -141,11 +152,40 @@ public class GameCharacter implements IModule {
 	}
 	
 	
+	protected void checkDeath(){
+		if (this.stats.getCurrentHealthPoints() <= 0){
+			this.stats.setCurrentHealthToZeroIfBelow();
+			this.onDeath();
+		}
+	}
+	
+	protected void onDeath(){
+		this.setAbleToAction(false);
+		this.setIsDead(true);
+	}
+	
+	private boolean checkBeforePassiveAction(){
+		if (this.isDead()){
+			Debug.log("GameCharacter "+this+" is dead. Buffs can not tick!");
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean checkBeforeActiveAction(){
+		if (!this.isAbleToAction()){
+			Debug.log("GameCharacter "+this+" is not able to action!");
+			return false;
+		}
+		return true;
+	}
+	
 	/*
 	 * Loot
 	 */
 	
 	public void lootItems(Item... items){
+		if (!this.checkBeforeActiveAction()) return;
 		for (Item i: items){
 			this.inventory.addItem(i);
 			Debug.log(this.getCharacterName()+" got Item: "+i.getItemName());
@@ -153,6 +193,7 @@ public class GameCharacter implements IModule {
 	}
 	
 	public void lootInventory(Inventory i){
+		if (!this.checkBeforeActiveAction()) return;
 		this.inventory.addGold(i.getCurrentGold());
 		this.lootItems(i.getInventoryArray());
 	}
@@ -160,6 +201,7 @@ public class GameCharacter implements IModule {
 	
 	
 	public boolean useItemOfInventory(Item i){
+		if (!this.checkBeforeActiveAction()) return false;
 		if (i instanceof Usable){
 			((Usable)i).useOn(this);
 			this.inventory.removeItem(i);
@@ -208,6 +250,26 @@ public class GameCharacter implements IModule {
 	public int getCharacterLevel(){
 		computeCharacterLevel();
 		return this.characterLevel;
+	}
+
+
+	public boolean isAbleToAction() {
+		return isAbleToAction;
+	}
+
+
+	private void setAbleToAction(boolean isAbleToAction) {
+		this.isAbleToAction = isAbleToAction;
+	}
+
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+
+	private void setIsDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 

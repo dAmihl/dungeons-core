@@ -19,5 +19,6 @@ public interface IOutput {
 	public void drawBattleScreen(BattleManager bm);
 	public void showBattleCharacterTurn(GameCharacter c);
 	public void showSkillset(Player p);
+	public void playerDeathScreen(Player p);
 }
 

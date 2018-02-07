@@ -8,7 +8,7 @@ import at.gousoogames.dungeons.core.tests.TestCases;
 
 public class Application {
 
-	public final static boolean DEBUG = false;
+	public final static boolean DEBUG = true;
 	public final static IOutput output = OutputFactory.getOutput();
 	
 	private static Player TestPlayer = null;
@@ -32,6 +32,8 @@ public class Application {
 		if (true){
 			if (TestPlayer == null)
 				TestPlayer = TestCases.createTestcasePlayer();
+			else
+				TestPlayer.giveHealth(200);
 			
 			SingleplayerGameManager gm = TestCases.createTestcaseGame(TestPlayer);
 			at.gousoogames.dungeons.core.game.game.Game.setGameManager(gm);

@@ -16,6 +16,7 @@ import at.gousoogames.dungeons.core.engine.world.Room;
 import at.gousoogames.dungeons.core.game.battle.BattleManager;
 import at.gousoogames.dungeons.core.game.battle.BattleTeam;
 import at.gousoogames.dungeons.core.game.game.Game;
+import at.gousoogames.dungeons.core.tests.application.Application;
 
 public class OutputText implements IOutput {
 
@@ -315,5 +316,16 @@ public class OutputText implements IOutput {
 		int input = readIntStdin();
 		InputManagerFactory.getInputManager().handleInputSkillset(new InputContainer(input));
 		
+	}
+
+	@Override
+	public void playerDeathScreen(Player p) {
+		printText("Unfortunately... YOU DIED!");
+		printText("Here's your character. Say goodbye!");
+		this.showCharacterInfo(p);
+		
+		printText("Enter any key to start all over, from the very beginning. Have fun!");
+		readIntStdin();
+		Application.startMainMenu();
 	}
 }

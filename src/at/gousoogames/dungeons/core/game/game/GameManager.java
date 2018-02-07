@@ -56,7 +56,7 @@ public abstract class GameManager {
 		return teams;
 	}
 	
-	
+	public abstract void onPlayerDeath(Player p);
 	
 	public int getEnvironmentLevel(){
 		int sumLevel = 0;

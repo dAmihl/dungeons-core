@@ -121,6 +121,18 @@ public class CharacterStats extends Stats {
 		return effDmg;
 	}
 	
+	
+	/**
+	 * package-private
+	 * Called by GameCharacter on Death, to keep HP on min. 0
+	 */
+	void setCurrentHealthToZeroIfBelow(){
+		if (this.currentHealthPoints < 0){
+			this.currentHealthPoints = 0;
+		}
+	}
+	
+
 	/*
 	 * GETTERS AND SETTERS
 	 */

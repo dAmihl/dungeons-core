@@ -74,7 +74,7 @@ public class EnemyGenerator {
 	
 	private static Skeleton generateSkeleton(){
 		CharacterStats stats = StatsGenerator.generateCharacterStats();
-		String name = generateName();
+		String name = generateName(Skeleton.class);
 		Skeleton e = new Skeleton(name, new Inventory(getInventorySize()), new Equipment(), new Skillset(), stats, new Buffs());
 		generateInventory(e);
 		generateEquipment(e);
@@ -84,7 +84,7 @@ public class EnemyGenerator {
 	
 	private static Goblin generateGoblin(){
 		CharacterStats stats = StatsGenerator.generateCharacterStats();
-		String name = generateName();
+		String name = generateName(Goblin.class);
 		Goblin e = new Goblin(name, new Inventory(getInventorySize()), new Equipment(), new Skillset(), stats, new Buffs());
 		generateInventory(e);
 		generateEquipment(e);
@@ -94,7 +94,7 @@ public class EnemyGenerator {
 	
 	private static Spider generateSpider(){
 		CharacterStats stats = StatsGenerator.generateCharacterStats();
-		String name = generateName();
+		String name = generateName(Spider.class);
 		Spider e = new Spider(name, new Inventory(getInventorySize()), new Skillset(), stats, new Buffs());
 		generateInventory(e);
 		generateSkillset(e);
@@ -110,8 +110,14 @@ public class EnemyGenerator {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private static String generateName(){
 		return "dummy";
+	}
+	
+	private static String generateName(Class<? extends Enemy> EnemyClass){
+		
+		return EnemyClass.getSimpleName();
 	}
 	
 	

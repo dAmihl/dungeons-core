@@ -29,13 +29,13 @@ public class TestCases {
 	
 /*Testcase configs*/
 private static final int P_STR = 10;
-private static final int P_VIT = 10;
+private static final int P_VIT = 1;
 private static final int P_AGI = 10;
 private static final int P_INT = 10;
 private static final int P_ARM = 10;
 	
 private static final int I_STR = 3;
-private static final int I_VIT = 20;
+private static final int I_VIT = 1;
 private static final int I_AGI = 1;
 private static final int I_INT = 0;
 private static final int I_ARM = 4;
@@ -73,7 +73,7 @@ private static final int I_ARM = 4;
 
 //		p.learnSkill(SkillFactory.getNewSupportiveHeal());
 //		p.learnSkill(SkillFactory.getNewMagicalFirestorm());
-		p.giveHealth(2000);
+		p.giveHealth(100);
 		p.getInventory().addItem(new ManapotUsable("manapot", 50, 1));
 		p.getInventory().addItem(head);
 		p.getInventory().addItem(weap2);

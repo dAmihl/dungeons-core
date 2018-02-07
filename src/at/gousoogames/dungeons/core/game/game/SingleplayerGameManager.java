@@ -34,6 +34,12 @@ public class SingleplayerGameManager extends GameManager {
 		teams[1] = t2;
 		return teams;
 	}
+
+	@Override
+	public void onPlayerDeath(Player p) {
+		IOutput out = Application.output;
+		out.playerDeathScreen(p);
+	}
 	
 	
 	
