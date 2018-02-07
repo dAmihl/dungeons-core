@@ -9,6 +9,7 @@ import at.gousoogames.dungeons.core.tests.TestCases;
 public class Application {
 
 	public final static boolean DEBUG = true;
+	public final static boolean COMBATLOG = true;
 	public final static IOutput output = OutputFactory.getOutput();
 	
 	private static Player TestPlayer = null;
