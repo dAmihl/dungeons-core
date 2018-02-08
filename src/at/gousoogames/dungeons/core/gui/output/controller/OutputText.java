@@ -16,6 +16,8 @@ import at.gousoogames.dungeons.core.engine.world.Room;
 import at.gousoogames.dungeons.core.game.battle.BattleManager;
 import at.gousoogames.dungeons.core.game.battle.BattleTeam;
 import at.gousoogames.dungeons.core.game.game.Game;
+import at.gousoogames.dungeons.core.gui.input.controller.InputContainer;
+import at.gousoogames.dungeons.core.gui.input.controller.InputManagerFactory;
 import at.gousoogames.dungeons.core.tests.application.Application;
 
 public class OutputText implements IOutput {
@@ -164,7 +166,7 @@ public class OutputText implements IOutput {
 		for (GameCharacter c : bm.getTeamOne().getMembers())
 			printText(c.getCharacterName() + " with Level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
 		
-		printText("Team 2: ");
+		printText("vs. Team 2: ");
 		for (GameCharacter c : bm.getTeamTwo().getMembers())
 			printText(c.getCharacterName() + " with Level "+c.getCharacterLevel()+" HP: "+c.getStats().getCurrentHealthPoints());
 		
@@ -215,11 +217,10 @@ public class OutputText implements IOutput {
 		}
 		else{
 			if (p.useItemOfInventory(p.getInventory().getInventoryArray()[input])){
-				
+				printText("Item used.");
 			}
 			else{
 				printText("you cant do that now");
-				battleShowInventory(p);
 			}
 		}
 		
@@ -307,7 +308,7 @@ public class OutputText implements IOutput {
 	@Override
 	public void showSkillset(Player p) {
 		printText("Learned Skills: ");
-		printText("Add to battle skillset: 0");
+		printText("Add to battle skillset:");
 		int i = 0;
 		for (Skill s: p.getSkillset().getLearnedSkills()){
 			printText(i++ +". "+s.getSkillName()+" / Level: "+s.getSkillLevel());

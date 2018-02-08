@@ -6,6 +6,7 @@ import at.gousoogames.dungeons.core.engine.generator.RandomNumberGenerator;
 import at.gousoogames.dungeons.core.engine.skills.effects.SkillEffect;
 import at.gousoogames.dungeons.core.game.gamemodes.GamemodeManager;
 import at.gousoogames.dungeons.core.gui.output.controller.Debug;
+import at.gousoogames.dungeons.core.gui.output.controller.GameLog;
 
 public abstract class Skill {
 
@@ -78,6 +79,7 @@ public abstract class Skill {
 					int physDamage = computeRawPhysicalDamage();
 					int magDamage = computeRawMagicalDamage();
 					Debug.log("Skill "+this+" of "+character+" giving character "+c+" RawDamage. PhysDmg: "+physDamage+" and MagDmg: "+magDamage+".");
+					GameLog.combatLog(getCharacter()+" used Skill "+this+" on "+c+" doing Damage: PHYS:"+physDamage+" and MAGIC:"+magDamage+".");
 					c.givePhysicalDamage(character, physDamage);
 					c.giveMagicalDamage(character, magDamage);
 					c.getBuffs().addBuff(newSkillEffectInstance());			

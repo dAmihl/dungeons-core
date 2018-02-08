@@ -1,7 +1,8 @@
-package at.gousoogames.dungeons.core.gui.output.controller;
+package at.gousoogames.dungeons.core.gui.input.controller;
 
 import at.gousoogames.dungeons.core.engine.modules.IModule;
 import at.gousoogames.dungeons.core.game.game.Game;
+import at.gousoogames.dungeons.core.gui.output.controller.Debug;
 import at.gousoogames.dungeons.core.tests.application.Application;
 
 public class InputManagerGUI implements IInputManager {

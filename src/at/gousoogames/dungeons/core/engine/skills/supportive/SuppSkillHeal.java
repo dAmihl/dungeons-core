@@ -5,6 +5,7 @@ import at.gousoogames.dungeons.core.engine.gameitems.StatRequirements;
 import at.gousoogames.dungeons.core.engine.skills.SkillOnUse;
 import at.gousoogames.dungeons.core.engine.skills.effects.SkillEffect;
 import at.gousoogames.dungeons.core.gui.output.controller.Debug;
+import at.gousoogames.dungeons.core.gui.output.controller.GameLog;
 
 
 public class SuppSkillHeal extends SupportiveSkill {
@@ -27,7 +28,7 @@ public class SuppSkillHeal extends SupportiveSkill {
 				c.giveHeal(heal);
 				c.getBuffs().addBuff(getSkillEffect());				
 				Debug.log(getCharacter() + " gives character "+c+" Heal: "+heal);
-			
+				GameLog.combatLog(getCharacter()+" healed "+c+" for "+heal+" points.");
 		}
 		
 	};

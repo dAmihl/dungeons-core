@@ -1,4 +1,4 @@
-package at.gousoogames.dungeons.core.gui.output.controller;
+package at.gousoogames.dungeons.core.gui.input.controller;
 
 public  class InputContainer {
 
