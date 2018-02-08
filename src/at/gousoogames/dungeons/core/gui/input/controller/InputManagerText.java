@@ -33,31 +33,31 @@ public class InputManagerText implements IInputManager {
 		String strinput = (String) c.getInput();
 
 		if (InputConfigurationManager.isKeyStartFight(strinput)) {
-			Game.getGameManager().startBattle(); return;
+			Game.getGameManager().startBattle(); 
 		}
-		if (InputConfigurationManager.isKeyShowCharacter(strinput)){
-			OutputFactory.getOutput().showCharacterInfo(Game.getGameManager().getPlayers()[0]); return;
+		else if (InputConfigurationManager.isKeyShowCharacter(strinput)){
+			OutputFactory.getOutput().showCharacterInfo(Game.getGameManager().getPlayers()[0]);
 		}
-		if (InputConfigurationManager.isKeyShowInventory(strinput)){
-			OutputFactory.getOutput().drawInventory(Game.getGameManager().getPlayers()[0]); return;
+		else if (InputConfigurationManager.isKeyShowInventory(strinput)){
+			OutputFactory.getOutput().drawInventory(Game.getGameManager().getPlayers()[0]);
 		}
-		if (InputConfigurationManager.isKeyShowSkillset(strinput)){
-			OutputFactory.getOutput().showSkillset(Game.getGameManager().getPlayers()[0]); return;
-		}
-		
-		Integer input = Integer.parseInt(strinput);
-		
-		IModule[] mods = Game.getGameManager().getDungeonManager().getCurrentRoom().getModules();
-		
-		if (mods[input] instanceof Chest){
-			at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0].lootItems(((Chest)mods[input]).getItems());
-			OutputFactory.getOutput().drawChest((Chest)mods[input]);
-		}else if (mods[input] instanceof Enemy){
-			OutputFactory.getOutput().showCharacterInfo(((Enemy)mods[input]));
+		else if (InputConfigurationManager.isKeyShowSkillset(strinput)){
+			OutputFactory.getOutput().showSkillset(Game.getGameManager().getPlayers()[0]); 
 		}else{
-			OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
+			Integer input = Integer.parseInt(strinput);
+			
+			IModule[] mods = Game.getGameManager().getDungeonManager().getCurrentRoom().getModules();
+			
+			if (mods[input] instanceof Chest){
+				at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0].lootItems(((Chest)mods[input]).getItems());
+				OutputFactory.getOutput().drawChest((Chest)mods[input]);
+			}else if (mods[input] instanceof Enemy){
+				OutputFactory.getOutput().showCharacterInfo(((Enemy)mods[input]));
+			}else{
+				OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
+			}
 		}
-		
+
 		OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
 	}
 
