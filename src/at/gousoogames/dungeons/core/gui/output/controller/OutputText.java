@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import at.gousoogames.dungeons.core.config.InputConfigurationManager;
 import at.gousoogames.dungeons.core.engine.character.GameCharacter;
 import at.gousoogames.dungeons.core.engine.character.Player;
 import at.gousoogames.dungeons.core.engine.character.npc.enemies.Enemy;
@@ -116,13 +117,12 @@ public class OutputText implements IOutput {
 		for (int i = 0; i < modules.length; i++){
 			printText(i+". Inspect Module: "+modules[i]);
 		}
-		printText("10: Start Fight");
-		printText("11: Show character");
-		printText("12: Show character inventory");
-		printText("13: continue to next room");
-		printText("14: show skillsets");
+		printText(InputConfigurationManager.getKeyStartFight()+": Start Fight");
+		printText(InputConfigurationManager.getKeyShowCharacter()+": Show character");
+		printText(InputConfigurationManager.getKeyShowInventory()+": Show character inventory");
+		printText(InputConfigurationManager.getKeyShowSkillset()+": show skillsets");
 		
-		int input = readIntStdin();
+		String input = readStringStdin();
 		
 		InputManagerFactory.getInputManager().handleInputRoom(new InputContainer(input));
 
@@ -143,6 +143,18 @@ public class OutputText implements IOutput {
 	        e.printStackTrace();
 	    }
 	    return number;
+	}
+	
+	private String readStringStdin(){
+		String input = "";
+	    try {
+	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+	        input = bufferedReader.readLine();
+	        return input;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    return input;
 	}
 
 	@Override
@@ -184,27 +196,25 @@ public class OutputText implements IOutput {
 	}
 	
 	
-	private void showBattlePlayerTurnMenu(Player p){
+	public void showBattlePlayerTurnMenu(Player p){
 		
 		printText("Your life: "+p.getStats().getCurrentHealthPoints());
 		printText("Your mana: "+p.getStats().getCurrentManaPoints());
 		printText("watcha wanna doo?");
-		printText("1. show skills");
-		printText("2. show inventory");
-		printText("3. show character stats");
+		printText(InputConfigurationManager.getKeyShowSkillset()+" show skills");
+		printText(InputConfigurationManager.getKeyShowInventory()+" show inventory");
+		printText(InputConfigurationManager.getKeyShowCharacter()+" show character stats");
 	
-		int input = readIntStdin();
+		String input = readStringStdin();
+		InputContainer ic = new InputContainer(input);
+		InputManagerFactory.getInputManager().handleInputPlayerTurn(ic);
 		
-		switch(input){
-		case 1: battleShowSkills(p); break;
-		case 2: battleShowInventory(p); break;
-		case 3: showCharacterInfo(p); showBattlePlayerTurnMenu(p); break;
-		default: showBattlePlayerTurnMenu(p); break;
-		}
+		
 
 	}
 	
-	private void battleShowInventory(Player p){
+	@Override
+	public void showBattleInventory(Player p){
 		int i = 0;
 		for (Item it: p.getInventory().getInventoryArray()){
 			printText(i++ +". "+it.getItemName());
@@ -226,7 +236,8 @@ public class OutputText implements IOutput {
 		
 	}
 	
-	private void battleShowSkills(Player p){
+	@Override
+	public void showBattleSkillset(Player p){
 		int i = 0;
 		printText("Physical Skills: ");
 		for (Skill s: p.getSkillset().getBattleSkillset().getPhysicalSkills()){
@@ -246,7 +257,7 @@ public class OutputText implements IOutput {
 		int input = readIntStdin();
 
 		if (input > i){
-			battleShowSkills(p);
+			showBattleSkillset(p);
 		}else{
 			if (input < 10)
 				battleUseSkillMenu(p, p.getSkillset().getBattleSkillset().getPhysicalSkills().get(input));
@@ -299,7 +310,7 @@ public class OutputText implements IOutput {
 
 	@Override
 	public void drawInventory(Player p) {
-		battleShowInventory(p);
+		showBattleInventory(p);
 		
 	}
 
@@ -329,4 +340,5 @@ public class OutputText implements IOutput {
 		readIntStdin();
 		Application.startMainMenu();
 	}
+
 }

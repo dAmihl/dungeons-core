@@ -1,9 +1,12 @@
 package at.gousoogames.dungeons.core.gui.input.controller;
 
+
+import at.gousoogames.dungeons.core.config.InputConfigurationManager;
 import at.gousoogames.dungeons.core.engine.character.Player;
 import at.gousoogames.dungeons.core.engine.character.npc.enemies.Enemy;
 import at.gousoogames.dungeons.core.engine.modules.Chest;
 import at.gousoogames.dungeons.core.engine.modules.IModule;
+import at.gousoogames.dungeons.core.game.game.Game;
 import at.gousoogames.dungeons.core.gui.output.controller.OutputFactory;
 import at.gousoogames.dungeons.core.tests.application.Application;
 
@@ -26,18 +29,26 @@ public class InputManagerText implements IInputManager {
 
 	@Override
 	public void handleInputRoom(InputContainer c) {
-		Integer input = (Integer) c.getInput();
-		IModule[] mods = at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom().getModules();
-		if (input >= Integer.parseInt("10")){
-			switch (input){
-			case 10: at.gousoogames.dungeons.core.game.game.Game.getGameManager().startBattle(); break;
-			case 11: OutputFactory.getOutput().showCharacterInfo(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0]); break;
-			case 12: OutputFactory.getOutput().drawInventory(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0]);break;
-			case 13: at.gousoogames.dungeons.core.game.game.Game.getGameManager().nextRoom(); break;
-			case 14: OutputFactory.getOutput().showSkillset(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0]); break;
-			}
+				
+		String strinput = (String) c.getInput();
+
+		if (InputConfigurationManager.isKeyStartFight(strinput)) {
+			Game.getGameManager().startBattle(); return;
 		}
-		else{
+		if (InputConfigurationManager.isKeyShowCharacter(strinput)){
+			OutputFactory.getOutput().showCharacterInfo(Game.getGameManager().getPlayers()[0]); return;
+		}
+		if (InputConfigurationManager.isKeyShowInventory(strinput)){
+			OutputFactory.getOutput().drawInventory(Game.getGameManager().getPlayers()[0]); return;
+		}
+		if (InputConfigurationManager.isKeyShowSkillset(strinput)){
+			OutputFactory.getOutput().showSkillset(Game.getGameManager().getPlayers()[0]); return;
+		}
+		
+		Integer input = Integer.parseInt(strinput);
+		
+		IModule[] mods = Game.getGameManager().getDungeonManager().getCurrentRoom().getModules();
+		
 		if (mods[input] instanceof Chest){
 			at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0].lootItems(((Chest)mods[input]).getItems());
 			OutputFactory.getOutput().drawChest((Chest)mods[input]);
@@ -46,14 +57,22 @@ public class InputManagerText implements IInputManager {
 		}else{
 			OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
 		}
-		}
+		
 		OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
-
 	}
 
 	@Override
 	public void handleInputPlayerTurn(InputContainer c) {
 		
+		String strinput = (String) c.getInput();
+		
+		if (InputConfigurationManager.isKeyShowSkillset(strinput)) OutputFactory.getOutput().showBattleSkillset(Game.getGameManager().getPlayers()[0]);
+		else if (InputConfigurationManager.isKeyShowInventory(strinput)) OutputFactory.getOutput().showBattleInventory(Game.getGameManager().getPlayers()[0]);
+		else if (InputConfigurationManager.isKeyShowCharacter(strinput)) {
+			OutputFactory.getOutput().showCharacterInfo(Game.getGameManager().getPlayers()[0]); 
+			OutputFactory.getOutput().showBattlePlayerTurnMenu(Game.getGameManager().getPlayers()[0]);
+		}
+		else OutputFactory.getOutput().showBattlePlayerTurnMenu(Game.getGameManager().getPlayers()[0]);
 	}
 
 	@Override
