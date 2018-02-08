@@ -121,6 +121,8 @@ public class OutputText implements IOutput {
 		printText(InputConfigurationManager.getKeyShowCharacter()+": Show character");
 		printText(InputConfigurationManager.getKeyShowInventory()+": Show character inventory");
 		printText(InputConfigurationManager.getKeyShowSkillset()+": show skillsets");
+		printText("########");
+		printText(InputConfigurationManager.getKeyExit()+": Quit");
 		
 		String input = readStringStdin();
 		

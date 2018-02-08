@@ -7,6 +7,7 @@ import at.gousoogames.dungeons.core.engine.character.npc.enemies.Enemy;
 import at.gousoogames.dungeons.core.engine.modules.Chest;
 import at.gousoogames.dungeons.core.engine.modules.IModule;
 import at.gousoogames.dungeons.core.game.game.Game;
+import at.gousoogames.dungeons.core.gui.output.controller.Debug;
 import at.gousoogames.dungeons.core.gui.output.controller.OutputFactory;
 import at.gousoogames.dungeons.core.tests.application.Application;
 
@@ -43,18 +44,33 @@ public class InputManagerText implements IInputManager {
 		}
 		else if (InputConfigurationManager.isKeyShowSkillset(strinput)){
 			OutputFactory.getOutput().showSkillset(Game.getGameManager().getPlayers()[0]); 
-		}else{
-			Integer input = Integer.parseInt(strinput);
+		}
+		else if (InputConfigurationManager.isKeyExit(strinput)){
+			Game.getGameManager().quitCurrentGame();
+		}
+		else{
+			
+			Integer input = -1;
+			
+			try{
+				input = Integer.parseInt(strinput);
+			}catch(NumberFormatException e){
+				Debug.log("Unknown Input!");
+			}
 			
 			IModule[] mods = Game.getGameManager().getDungeonManager().getCurrentRoom().getModules();
 			
-			if (mods[input] instanceof Chest){
-				at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0].lootItems(((Chest)mods[input]).getItems());
-				OutputFactory.getOutput().drawChest((Chest)mods[input]);
-			}else if (mods[input] instanceof Enemy){
-				OutputFactory.getOutput().showCharacterInfo(((Enemy)mods[input]));
+			if (input < 0 || input > mods.length - 1){
+				Debug.log("Unknown Input!");
 			}else{
-				OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
+				if (mods[input] instanceof Chest){
+					at.gousoogames.dungeons.core.game.game.Game.getGameManager().getPlayers()[0].lootItems(((Chest)mods[input]).getItems());
+					OutputFactory.getOutput().drawChest((Chest)mods[input]);
+				}else if (mods[input] instanceof Enemy){
+					OutputFactory.getOutput().showCharacterInfo(((Enemy)mods[input]));
+				}else{
+					OutputFactory.getOutput().drawRoom(at.gousoogames.dungeons.core.game.game.Game.getGameManager().getDungeonManager().getCurrentRoom());
+				}
 			}
 		}
 

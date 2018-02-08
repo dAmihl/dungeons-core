@@ -85,7 +85,17 @@ public class InputConfigurationManager {
 	}
 	
 	private static boolean isInputKey(String input, String key){
-		return input.equals(key) || input.toUpperCase().equals(key);
+		if (key.contains("|")){
+			String[] opts = key.split("\\|");
+			boolean result = false;
+			for(String keyOpt: opts){
+				result = result || input.equals(keyOpt) || input.toUpperCase().equals(keyOpt);
+				if (result) break;
+			}
+			return result;
+		}else{
+			return input.equals(key) || input.toUpperCase().equals(key);
+		}
 	}
 	
 	private static boolean check(){

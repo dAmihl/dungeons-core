@@ -92,4 +92,9 @@ public abstract class GameManager {
 		return players;
 	}
 	
+	public void quitCurrentGame(){
+		Debug.log("Bye Bye!");
+		System.exit(0);
+	}
+	
 }
