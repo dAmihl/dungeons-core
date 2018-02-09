@@ -1,6 +1,7 @@
 package at.gousoogames.dungeons.core;
 
 import at.gousoogames.dungeons.core.config.ConfigManager;
+import at.gousoogames.dungeons.core.gui.console.GUIConsole;
 import at.gousoogames.dungeons.core.tests.application.Application;
 
 public class Dungeons{
@@ -10,9 +11,9 @@ public class Dungeons{
 	
 	public static void main(String[] args) {
 		
-		ConfigManager.loadControlsConfig();
+		//GUIConsole console = new GUIConsole();
 		
-		System.out.println(ConfigManager.getControls());
+		ConfigManager.loadControlsConfig();
 		
 		Application.startMainMenu();
 		

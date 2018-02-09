@@ -132,17 +132,28 @@ public class OutputText implements IOutput {
 	
 	
 	private Integer readIntStdin(){
-		String input;
+		String input = null;
 		Integer number = 0;
+		BufferedReader bufferedReader = null;
 	    try {
-	        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-	        input = bufferedReader.readLine();
+	        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+	        while ((input = bufferedReader.readLine()) == null);
 	        number = Integer.parseInt(input);
 	        return number;
 	    } catch (NumberFormatException ex) {
-	       printText("Not a number !");
+	       printText(input+ "is Not a number !");
 	    } catch (IOException e) {
 	        e.printStackTrace();
+	    }finally{
+	    	if (bufferedReader != null){
+	    		try {
+					bufferedReader.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
+	    	
 	    }
 	    return number;
 	}

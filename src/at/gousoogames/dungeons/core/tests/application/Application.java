@@ -1,5 +1,7 @@
 package at.gousoogames.dungeons.core.tests.application;
 
+
+
 import at.gousoogames.dungeons.core.engine.character.Player;
 import at.gousoogames.dungeons.core.game.game.SingleplayerGameManager;
 import at.gousoogames.dungeons.core.gui.output.controller.IOutput;
@@ -16,6 +18,7 @@ public class Application {
 	
 	public static void main(String[] args) {
 		
+		
 		startMainMenu();
 	
 	}
@@ -24,6 +27,7 @@ public class Application {
 		IOutput out = OutputFactory.getOutput();
 
 		out.showMainMenu();
+		
 	}
 	
 	public static void startTestScenario(){
@@ -34,7 +38,7 @@ public class Application {
 			if (TestPlayer == null)
 				TestPlayer = TestCases.createTestcasePlayer();
 			else
-				TestPlayer.giveHealth(200);
+				TestPlayer.giveHealth(2000);
 			
 			SingleplayerGameManager gm = TestCases.createTestcaseGame(TestPlayer);
 			at.gousoogames.dungeons.core.game.game.Game.setGameManager(gm);
